@@ -1,0 +1,91 @@
+1 a
+2 a
+3 c 
+4 a
+5 c
+6 c
+7 E
+
+8
+public class NumericTest { 
+    public static void CreateC(String a, String b) { 
+        if (a != null && b != null) { 
+            StringBuilder c = new StringBuilder(); 
+            System.out.println("Input values: " + a + " - " + b); 
+            int i = 0; 
+            int j = 0; 
+            loop: for (; i <= a.length();) { 
+                System.out.println(i); 
+                int proxi = i + 1; 
+                if (proxi <= a.length()) { 
+                    c.append(a.substring(i, proxi)).toString(); 
+                } 
+                i++; 
+                for (; j <= b.length();) { 
+                    System.out.println(j); 
+                    int proxj = j + 1; 
+                    if (proxj <= b.length()) { 
+                        c.append(b.substring(j, proxj)).toString(); 
+                    }  
+                    j++; 
+                    continue loop; 
+                } 
+            }
+            try{
+                int value = Integer.valueOf(c.toString());
+                if (value < 1000000) {
+                    System.out.println("Out value: " + c);
+                } else {
+                    value = -1;
+                    System.out.println("Out value >  1.000.000:" + value);
+                }
+            }catch (Exception e) {
+                int value = -1;
+                System.out.println("Application Error: "+ e +" c value: "+value);
+            }
+        } 
+    } 
+    
+    public static void Formule(String a, String b) { 
+        if(a.length() > b.length()){ 
+            CreateC(a,b); 
+        }
+        else{ 
+            CreateC(b,a); 
+        } 
+    } 
+
+    public static void main(String[] args) { 
+        Formule("51", "1986"); 
+    } 
+}
+
+
+
+9
+public void insert(No node, int value) {
+    //check create tree
+    if (node != null) {
+        //Check is value < current node, and send after subtree left
+        if (value < node.value) {
+            //If exists left node continue search
+            if (node.left != null) {
+                insert(node.left, value);
+            } else {
+                //If left node empty insert a new node
+                System.out.println("  Insert " + value + " on left " + node.value);
+                node.left = new No(value);
+            }
+        //Check is value > current node, andsend after sibtree right
+        } else if (value > node.value) {
+            //If exists right node continue search
+            if (node.right != null) {
+                insert(node.right, value);
+            } else {
+                //If right node empty insert a new node
+                System.out.println("  Insert " + value + " on right " + node.value);
+                node.right = new No(value);
+            }
+        }
+    }
+}
